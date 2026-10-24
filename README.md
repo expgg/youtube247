@@ -1,10 +1,19 @@
-# 🔴 YouTube 24/7 Live Streaming Engine (v1.0)
+<p align="center">
+  <img src="assets/banner.png" alt="youtube247 banner" width="100%">
+</p>
 
-A production-grade, headless 24/7 YouTube Live streaming engine designed to broadcast pre-recorded video loops continuously from a low-spec VPS (1 vCPU, 1 GB RAM, 7 GB SSD) with near-zero CPU overhead and zero stream cuts.
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-18%2B-green.svg" alt="Node.js"></a>
+  <a href="https://ffmpeg.org/"><img src="https://img.shields.io/badge/FFmpeg-5.0%2B-orange.svg" alt="FFmpeg"></a>
+  <a href="https://github.com/yt-dlp/yt-dlp"><img src="https://img.shields.io/badge/yt--dlp-supported-red.svg" alt="yt-dlp"></a>
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
-[![FFmpeg](https://img.shields.io/badge/FFmpeg-5.0%2B-orange.svg)](https://ffmpeg.org/)
+<h3 align="center">Production-Grade 24/7 Continuous YouTube Live Broadcast Engine</h3>
+
+<p align="center">
+  A lightweight, headless streaming daemon designed to broadcast continuous video loops 24/7/365 from low-spec VPS servers (1 vCPU, 1 GB RAM, 7 GB SSD) with near-zero CPU overhead and zero stream cuts.
+</p>
 
 ---
 
