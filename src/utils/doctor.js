@@ -29,8 +29,15 @@ export function runDoctor() {
     ffprobeVersion = out.split('\n')[0];
     console.log(`${pc.green('✔')} FFprobe is installed: ${pc.gray(ffprobeVersion)}`);
   } catch (err) {
-    console.log(`${pc.red('✖')} FFprobe is NOT found in system PATH.`);
-    allGood = false;
+    console.log(`${pc.yellow('ℹ')} FFprobe not in PATH (Converter will automatically fallback to FFmpeg for metadata inspection).`);
+  }
+
+  // 3. Check yt-dlp
+  try {
+    const ytVer = execSync('yt-dlp --version', { stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
+    console.log(`${pc.green('✔')} yt-dlp is installed: ${pc.gray(ytVer)}`);
+  } catch (err) {
+    console.log(`${pc.yellow('⚠')} yt-dlp is not installed. (Install with: pip install -U yt-dlp)`);
   }
 
   // 3. System RAM Check

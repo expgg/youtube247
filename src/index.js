@@ -3,9 +3,11 @@
 import { Command } from 'commander';
 import pc from 'picocolors';
 import { CONFIG } from '../config/index.js';
+import { getProfile } from '../config/profiles.js';
 import { listChannels } from './auth/channel-manager.js';
 import { getOAuth2Client } from './auth/oauth.js';
-import { normalizeAll } from './converter/normalizer.js';
+import { normalizeAll, normalizeVideo } from './converter/normalizer.js';
+import { downloadVideo } from './downloader/ytdlp.js';
 import { Watchdog } from './streamer/watchdog.js';
 import { runDoctor } from './utils/doctor.js';
 import logger from './utils/logger.js';
@@ -33,14 +35,36 @@ program
     await watchdog.start();
   });
 
+// Command: download
+program
+  .command('download <url>')
+  .description('Download video using yt-dlp into media/raw/ directory')
+  .option('-n, --normalize', 'Automatically normalize after download')
+  .option('-p, --profile <profileName>', 'Target profile (720p, 1080p, vertical-720p, vertical-1080p)', 'vertical-720p')
+  .option('-f, --fit <fitMode>', 'Fit mode: fill (crop to full 9:16), pad (black bars), blur (blurred background)', 'fill')
+  .action(async (url, options) => {
+    try {
+      const rawPath = await downloadVideo(url);
+      if (options.normalize) {
+        const targetProfile = getProfile(options.profile);
+        const targetPath = rawPath.replace('raw', 'processed');
+        await normalizeVideo(rawPath, targetPath, { profile: targetProfile, fit: options.fit });
+      }
+    } catch (err) {
+      logger.error('Download operation failed', err);
+    }
+  });
+
 // Command: normalize
 program
   .command('normalize')
   .description('Convert raw video files in media/raw/ to standard 24/7 stream profile')
-  .option('-p, --profile <profileName>', 'Target profile (720p or 1080p)', CONFIG.streamProfileName)
+  .option('-p, --profile <profileName>', 'Target profile (720p, 1080p, vertical-720p, vertical-1080p)', CONFIG.streamProfileName)
+  .option('-f, --fit <fitMode>', 'Fit mode: fill (crop to full canvas), pad (black bars), blur (blurred background)', 'fill')
   .action(async options => {
-    logger.info(`Running batch normalizer with profile: ${pc.bold(options.profile)}`);
-    await normalizeAll();
+    const targetProfile = getProfile(options.profile);
+    logger.info(`Running batch normalizer with profile: ${pc.bold(targetProfile.name)} [Fit: ${options.fit}]`);
+    await normalizeAll({ profile: targetProfile, fit: options.fit });
   });
 
 // Command: doctor

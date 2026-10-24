@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node src/index.js stream",
     "doctor": "node src/index.js doctor",
+    "download": "node src/index.js download",
     "normalize": "node src/index.js normalize",
     "stream": "node src/index.js stream",
     "auth": "node src/index.js auth",
