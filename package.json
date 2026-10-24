@@ -1,0 +1,34 @@
+{
+  "name": "youtube-247-live",
+  "version": "1.0.0",
+  "description": "Production-grade 24/7 YouTube Live streaming engine optimized for low-spec VPS",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "yt247": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js stream",
+    "doctor": "node src/index.js doctor",
+    "normalize": "node src/index.js normalize",
+    "stream": "node src/index.js stream",
+    "auth": "node src/index.js auth",
+    "channels": "node src/index.js channels"
+  },
+  "keywords": [
+    "youtube",
+    "live",
+    "streaming",
+    "ffmpeg",
+    "24-7",
+    "rtmp"
+  ],
+  "author": "expgg",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "dotenv": "^16.4.7",
+    "googleapis": "^144.0.0",
+    "picocolors": "^1.1.1"
+  }
+}

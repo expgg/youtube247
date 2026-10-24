@@ -1,0 +1,27 @@
+# Environment & secrets
+.env
+*.env
+tokens.json
+src/auth/tokens.json
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Logs
+logs/
+*.log
+
+# Media (raw and processed video files)
+media/raw/*
+!media/raw/.gitkeep
+media/processed/*
+!media/processed/.gitkeep
+media/playlists/*
+!media/playlists/.gitkeep
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
