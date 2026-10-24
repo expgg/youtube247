@@ -56,7 +56,20 @@ youtube247/
 
 ## 🚀 Quick Start (Local or VPS)
 
-### 1. Prerequisites
+### 🪟 Windows (1-Click Auto Setup)
+Simply double-click **`setup.bat`**! It will:
+1. Verify Node.js and FFmpeg
+2. Install npm dependencies automatically
+3. Prompt for your YouTube Stream Key and write `.env`
+4. Run diagnostics and launch the stream!
+
+*(To restart the stream anytime later, just double-click **`start.bat`**).*
+
+---
+
+### 🐧 Linux VPS / macOS (Manual Setup)
+
+#### 1. Prerequisites
 - **Node.js**: v18.0.0 or higher
 - **FFmpeg & FFprobe**: Installed and available in your system `PATH`
 
